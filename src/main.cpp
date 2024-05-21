@@ -15,12 +15,17 @@ std::string createXLString(int levelLengthMinutes) {
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 
 	void createXLlabel() {
-		if (!m_level->isPlatformer()) {
-			int levelLengthMinutes = m_level->m_timestamp / 14400;
-			if (levelLengthMinutes >= 4) {
-				m_lengthLabel->setString(createXLString(levelLengthMinutes).c_str());
-			}
+		if (m_level->isPlatformer()) {
+			return;
 		}
+		
+		int levelLengthMinutes = m_level->m_timestamp / 14400;
+		
+		if (levelLengthMinutes < 4) {
+			return;
+		}
+
+		m_lengthLabel->setString(createXLString(levelLengthMinutes).c_str());
 	}
 
 	void setupLevelInfo() {
