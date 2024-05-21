@@ -5,7 +5,7 @@ using namespace geode::prelude;
 
 std::string createXLString(int levelLengthMinutes) {
 	std::string XLlabel;
-	for (int i = 0; i < log2(levelLengthMinutes) & i < 10; i++) {
+	for (int i = 0; i < (int) log2(levelLengthMinutes) & i < 10; i++) {
 		XLlabel = XLlabel.append("X");
 	}
 	XLlabel = XLlabel.append("L");
