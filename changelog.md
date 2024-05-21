@@ -1,3 +1,7 @@
+# v1.0.1
+* very minor improvements
+* New logo
+
 # v1.0.0
 
  * Initial release
