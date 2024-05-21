@@ -5,7 +5,7 @@
 
 using namespace geode::prelude;
 
-std::string createXLlabel(int levelLengthMinutes) {
+std::string createXLString(int levelLengthMinutes) {
 	std::string XLlabel;
 	int numberOfXs = log2(levelLengthMinutes);
 	log::info("Number of Xs is {}", numberOfXs);
@@ -18,9 +18,7 @@ std::string createXLlabel(int levelLengthMinutes) {
 
 class $modify(LevelInfoLayer) {
 
-	bool XLlabelRendered;
-
-	void displayXLlabel() {
+	void createXLlabel() {
 		if (m_level->isPlatformer()) {
 			return;
 		}
@@ -32,17 +30,17 @@ class $modify(LevelInfoLayer) {
 			return;
 		}
 
-		std::string XLlabel = createXLlabel(levelLengthMinutes);
+		std::string XLlabel = createXLString(levelLengthMinutes);
 		m_lengthLabel->setString(fmt::format("{}", XLlabel).c_str());
 	}
 
 	void setupLevelInfo() {
 		LevelInfoLayer::setupLevelInfo();
-		displayXLlabel();
+		createXLlabel();
 	}
 
 	virtual void levelDownloadFinished(GJGameLevel* p0) {
 		LevelInfoLayer::levelDownloadFinished(p0);
-		displayXLlabel();
+		createXLlabel();
 	}
 };
