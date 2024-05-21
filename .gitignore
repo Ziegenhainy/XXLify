@@ -56,3 +56,7 @@ build-*/
 
 # Visual Studio
 .vs/
+/cmake-build-relwithdebinfo/
+/cmake-build-release/
+/cmake-build-minsizerel/
+/cmake-build-debug/
