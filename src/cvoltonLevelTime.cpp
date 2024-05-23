@@ -1,4 +1,3 @@
-#include <string>
 #include <Geode/Geode.hpp>
 #include <Geode/cocos/support/base64.h>
 #include <Geode/cocos/support/zip_support/ZipUtils.h>
@@ -70,21 +69,20 @@ int timeForLevelString(const std::string& levelString) {
         std::string currentKey;
         std::string keyID;
 
-        //std::stringstream objectStream;
         float prevPortalX = 0;
         int prevPortalId = 0;
 
         float timeFull = 0;
 
         float maxPos = 0;
-        while(std::getline(responseStream, currentObject, ';')) {
+        while(getline(responseStream, currentObject, ';')) {
             size_t i = 0;
             int objID = 0;
             float xPos = 0;
             bool checked = false;
 
             std::stringstream objectStream(currentObject);
-            while(std::getline(objectStream, currentKey, ',')) {
+            while(getline(objectStream, currentKey, ',')) {
                 epicString += currentKey + "\n";
 
                 if(i % 2 == 0) keyID = currentKey;
