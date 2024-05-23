@@ -1,4 +1,5 @@
 #include <Geode/modify/LevelInfoLayer.hpp>
+#include "cvoltonLevelTime.cpp"
 #include <cmath>
 
 using namespace geode::prelude;
@@ -21,6 +22,11 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 		
 		int levelLengthMinutes = m_level->m_timestamp / 14400;
 		
+		// CVolton's time calculator for levels before 2.2
+		if (levelLengthMinutes<=0) {
+			levelLengthMinutes = timeForLevelString(m_level->m_levelString);
+		}
+
 		if (levelLengthMinutes < 4) {
 			return;
 		}
