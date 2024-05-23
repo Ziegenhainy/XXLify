@@ -1,6 +1,7 @@
 #include <Geode/modify/LevelInfoLayer.hpp>
 #include "cvoltonLevelTime.cpp"
 #include <cmath>
+#include <thread>
 
 using namespace geode::prelude;
 
@@ -14,6 +15,18 @@ std::string createXLString(int levelLengthMinutes) {
 };
 
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
+	// Using CVolton's time calculator for levels before 2.2
+	void createXLlabelCvolton() {
+		std::thread([this](){
+			thread::setName("CVoltonTime");
+			int cvoltonLengthMinutes = timeForLevelString(m_level->m_levelString);
+			Loader::get()->queueInMainThread([this,cvoltonLengthMinutes]() {
+				if (cvoltonLengthMinutes >= 4) {
+					m_lengthLabel->setString(createXLString(cvoltonLengthMinutes).c_str());
+				}
+			});
+		}).detach();
+	}
 
 	void createXLlabel() {
 		if (m_level->isPlatformer()) {
@@ -22,9 +35,10 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 		
 		int levelLengthMinutes = m_level->m_timestamp / 14400;
 		
-		// CVolton's time calculator for levels before 2.2
+		
 		if (levelLengthMinutes<=0) {
-			levelLengthMinutes = timeForLevelString(m_level->m_levelString);
+			createXLlabelCvolton();
+			return;
 		}
 
 		if (levelLengthMinutes < 4) {
