@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help improve the mod
 title: ''
-labels: ''
+labels: bug
 assignees: ''
 
 ---
@@ -26,9 +26,9 @@ If applicable, add screenshots to help explain your problem.
 
 **Game and system info:**
  - OS: [e.g. iOS]
- - Version [e.g. 22]
- - GD version [e.g. 2.205]
- - Geode version [e.g. 2.0.0-beta.26"]
+ - Mod Version: [e.g. 1.1.0]
+ - GD version: [e.g. 2.205]
+ - Geode version: [e.g. 2.0.0-beta.26"]
 
 **Additional context**
 Add any other context about the problem here.

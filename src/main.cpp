@@ -17,13 +17,17 @@ std::string createXLString(int levelLengthMinutes) {
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 	// Using CVolton's time calculator for levels before 2.2
 	void createXLlabelCvolton() {
+		this->retain();
+		
 		std::thread([this](){
 			thread::setName("CVoltonTime");
 			int cvoltonLengthMinutes = timeForLevelString(m_level->m_levelString);
+
 			Loader::get()->queueInMainThread([this,cvoltonLengthMinutes]() {
 				if (cvoltonLengthMinutes >= 4) {
 					m_lengthLabel->setString(createXLString(cvoltonLengthMinutes).c_str());
 				}
+				this->release();
 			});
 		}).detach();
 	}
