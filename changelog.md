@@ -1,5 +1,5 @@
 # v1.1.2
-* Fixe doccasional-er crashes
+* Fixed occasional-er crashes
 
 # v1.1.1
 * Fixed occasional crashes
