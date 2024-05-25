@@ -17,8 +17,9 @@ std::string createXLString(int levelLengthMinutes) {
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 	// Using CVolton's time calculator for levels before 2.2
 	void createXLlabelCvolton() {
+		this->retain();
+		
 		std::thread([this](){
-			this->retain();
 			thread::setName("CVoltonTime");
 			int cvoltonLengthMinutes = timeForLevelString(m_level->m_levelString);
 
