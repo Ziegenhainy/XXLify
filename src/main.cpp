@@ -5,16 +5,16 @@
 
 using namespace geode::prelude;
 
-std::string createXLString(int levelLengthMinutes) {
-	std::string XLlabel;
+std::string createXLstring(int levelLengthMinutes) {
+	std::string XLstring;
 	int maximumXs = Mod::get()->getSettingValue<int64_t>("maximum-xs");
 	bool usingPowerNotation = Mod::get()->getSettingValue<bool>("use-power-notation");
 	bool usingXXLplus = Mod::get()->getSettingValue<bool>("xxl-plus");
 	int lengthExponent = log2(levelLengthMinutes);
 
 	if (usingPowerNotation && lengthExponent > 1) {
-		XLlabel.append("X^");
-		XLlabel.append(std::to_string(lengthExponent));
+		XLstring.append("X^");
+		XLstring.append(std::to_string(lengthExponent));
 	}
 
 	else {
@@ -22,21 +22,21 @@ std::string createXLString(int levelLengthMinutes) {
 			lengthExponent = maximumXs;
 		}
 		for (int i = 0; i < lengthExponent; i++) {
-			XLlabel.append("X");
+			XLstring.append("X");
 		}
 	}
-	XLlabel.append("L");
+	XLstring.append("L");
 
 	if (!usingXXLplus) {
-		return XLlabel;
+		return XLstring;
 	}
 
     int XXLPlusLength = pow(2, lengthExponent) + pow(2, lengthExponent - 1);
     if (levelLengthMinutes >= XXLPlusLength) {
-		XLlabel.append("+");
+		XLstring.append("+");
     }
 
-    return XLlabel;
+    return XLstring;
 };
 
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
@@ -50,7 +50,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 
 			Loader::get()->queueInMainThread([this,cvoltonLengthMinutes]() {
 				if (cvoltonLengthMinutes >= 3) {
-					m_lengthLabel->setString(createXLString(cvoltonLengthMinutes).c_str());
+					m_lengthLabel->setString(createXLstring(cvoltonLengthMinutes).c_str());
 				}
 				this->release();
 			});
@@ -74,7 +74,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 			return;
 		}
 
-		m_lengthLabel->setString(createXLString(levelLengthMinutes).c_str());
+		m_lengthLabel->setString(createXLstring(levelLengthMinutes).c_str());
 	}
 
 	void setupLevelInfo() {
