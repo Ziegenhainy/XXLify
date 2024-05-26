@@ -18,6 +18,12 @@
             "default": 10,
 			"max": 10,
 			"min": 2
-        }
+        },
+		"use-power-notation": {
+			"name": "Use power notation",
+			"description": "If enabled, XXL and longer levels will be displayed using power notation, i.e. \"XXXL\" becomes \"X^3L\"",
+			"type": "bool",
+			"default": false
+		}
     }
 }

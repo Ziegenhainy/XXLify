@@ -8,10 +8,17 @@ using namespace geode::prelude;
 std::string createXLString(int levelLengthMinutes) {
 	std::string XLlabel;
 	int maximumXs = Mod::get()->getSettingValue<int64_t>("maximum-xs");
-	for (int i = 0; i < (int) log2(levelLengthMinutes) & i < maximumXs; i++) {
-		XLlabel = XLlabel.append("X");
+	bool usingPowerNotation = Mod::get()->getSettingValue<bool>("use-power-notation");
+	if (usingPowerNotation) {
+		XLlabel.append("X^");
+		XLlabel.append(std::to_string((int) log2(levelLengthMinutes)));
 	}
-	XLlabel = XLlabel.append("L");
+	else {
+		for (int i = 0; i < (int) log2(levelLengthMinutes) & i < maximumXs; i++) {
+			XLlabel.append("X");
+		}
+	}
+	XLlabel.append("L");
 	return XLlabel;
 };
 
