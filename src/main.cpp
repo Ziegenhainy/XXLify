@@ -9,12 +9,14 @@ std::string createXLString(int levelLengthMinutes) {
 	std::string XLlabel;
 	int maximumXs = Mod::get()->getSettingValue<int64_t>("maximum-xs");
 	bool usingPowerNotation = Mod::get()->getSettingValue<bool>("use-power-notation");
+	int lengthExponent = log2(levelLengthMinutes);
+	
 	if (usingPowerNotation) {
 		XLlabel.append("X^");
-		XLlabel.append(std::to_string((int) log2(levelLengthMinutes)));
+		XLlabel.append(std::to_string(lengthExponent));
 	}
 	else {
-		for (int i = 0; i < (int) log2(levelLengthMinutes) & i < maximumXs; i++) {
+		for (int i = 0; i < lengthExponent & i < maximumXs; i++) {
 			XLlabel.append("X");
 		}
 	}
