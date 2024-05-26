@@ -1,3 +1,8 @@
+# v1.2.0
+* Added setting for maximum Xs
+* Added power notation (disabled by default)
+* Added XLL plus
+
 # v1.1.2
 * Fixed occasional-er crashes
 
@@ -12,6 +17,4 @@
 * New logo
 
 # v1.0.0
-
- * Initial release
- With such features as: The entire thing working perfectly with 2.2 levels but not on 2.1
+* Initial release with such features as: The entire thing working perfectly with 2.2 levels but not on 2.1
