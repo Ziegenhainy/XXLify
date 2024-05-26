@@ -9,19 +9,34 @@ std::string createXLString(int levelLengthMinutes) {
 	std::string XLlabel;
 	int maximumXs = Mod::get()->getSettingValue<int64_t>("maximum-xs");
 	bool usingPowerNotation = Mod::get()->getSettingValue<bool>("use-power-notation");
+	bool usingXXLplus = Mod::get()->getSettingValue<bool>("xxl-plus");
 	int lengthExponent = log2(levelLengthMinutes);
-	
-	if (usingPowerNotation) {
+
+	if (usingPowerNotation && lengthExponent > 1) {
 		XLlabel.append("X^");
 		XLlabel.append(std::to_string(lengthExponent));
 	}
+
 	else {
-		for (int i = 0; i < lengthExponent & i < maximumXs; i++) {
+		if (lengthExponent > maximumXs) {
+			lengthExponent = maximumXs;
+		}
+		for (int i = 0; i < lengthExponent; i++) {
 			XLlabel.append("X");
 		}
 	}
 	XLlabel.append("L");
-	return XLlabel;
+
+	if (!usingXXLplus) {
+		return XLlabel;
+	}
+
+    int XXLPlusLength = pow(2, lengthExponent) + pow(2, lengthExponent - 1);
+    if (levelLengthMinutes >= XXLPlusLength) {
+		XLlabel.append("+");
+    }
+
+    return XLlabel;
 };
 
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
@@ -34,7 +49,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 			int cvoltonLengthMinutes = timeForLevelString(m_level->m_levelString);
 
 			Loader::get()->queueInMainThread([this,cvoltonLengthMinutes]() {
-				if (cvoltonLengthMinutes >= 4) {
+				if (cvoltonLengthMinutes >= 3) {
 					m_lengthLabel->setString(createXLString(cvoltonLengthMinutes).c_str());
 				}
 				this->release();
@@ -55,7 +70,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 			return;
 		}
 
-		if (levelLengthMinutes < 4) {
+		if (levelLengthMinutes < 3) {
 			return;
 		}
 

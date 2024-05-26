@@ -17,11 +17,17 @@
             "type": "int",
             "default": 10,
 			"max": 10,
-			"min": 2
+			"min": 1
         },
 		"use-power-notation": {
 			"name": "Use power notation",
 			"description": "If enabled, XXL and longer levels will be displayed using power notation, i.e. \"XXXL\" becomes \"X^3L\"",
+			"type": "bool",
+			"default": false
+		},
+		"xxl-plus": {
+			"name": "Enable XXL+",
+			"description": "If enabled, levels that are beyond halfway to the next XXL label get a + added to the length",
 			"type": "bool",
 			"default": false
 		}
