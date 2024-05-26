@@ -1,7 +1,7 @@
 # v1.2.0
 * Added setting for maximum Xs
 * Added power notation (disabled by default)
-* Added XLL plus
+* Added XLL plus (disabled by default)
 
 # v1.1.2
 * Fixed occasional-er crashes
