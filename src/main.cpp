@@ -7,7 +7,8 @@ using namespace geode::prelude;
 
 std::string createXLString(int levelLengthMinutes) {
 	std::string XLlabel;
-	for (int i = 0; i < (int) log2(levelLengthMinutes) & i < 10; i++) {
+	int maximumXs = Mod::get()->getSettingValue<int64_t>("maximum-xs");
+	for (int i = 0; i < (int) log2(levelLengthMinutes) & i < maximumXs; i++) {
 		XLlabel = XLlabel.append("X");
 	}
 	XLlabel = XLlabel.append("L");
