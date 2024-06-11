@@ -39,6 +39,7 @@ jobs:
           # build-config: RelWithDebInfo # comment out to Release mode
           # export-pdb: true # comment out to Release mode
           combine: true
+          sdk: 'nightly'
           target: ${{ matrix.config.target }}
 
   package:
