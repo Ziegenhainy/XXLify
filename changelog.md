@@ -1,3 +1,6 @@
+# v1.2.1-beta.1
+* Update to geode 3.0.0-alpha.2
+
 # v1.2.0
 * Added setting for maximum Xs
 * Added power notation (disabled by default)
