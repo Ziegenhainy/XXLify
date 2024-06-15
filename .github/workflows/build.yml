@@ -15,8 +15,8 @@ jobs:
         - name: Windows
           os: windows-latest
 
-#        - name: macOS
-#          os: macos-latest
+        - name: macOS
+          os: macos-latest
 
         - name: Android32
           os: ubuntu-latest
@@ -39,7 +39,6 @@ jobs:
           # build-config: RelWithDebInfo # comment out to Release mode
           # export-pdb: true # comment out to Release mode
           combine: true
-          sdk: 'nightly'
           target: ${{ matrix.config.target }}
 
   package:
