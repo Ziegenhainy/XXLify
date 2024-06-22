@@ -12,7 +12,7 @@ std::string createXLstring(int levelLengthMinutes) {
 	bool usingXXLplus = Mod::get()->getSettingValue<bool>("xxl-plus");
 	int lengthExponent = log2(levelLengthMinutes);
 
-	if (usingPowerNotation && lengthExponent > 1) {
+	if (usingPowerNotation && lengthExponent > maximumXs) {
 		XLstring.append("X^");
 		XLstring.append(std::to_string(lengthExponent));
 	}
