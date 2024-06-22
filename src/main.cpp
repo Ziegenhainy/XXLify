@@ -6,15 +6,14 @@
 using namespace geode::prelude;
 
 std::string createXLstring(int levelLengthMinutes) {
-	std::string XLstring;
+	std::stringstream XLstring;
 	int maximumXs = Mod::get()->getSettingValue<int64_t>("maximum-xs");
 	bool usingPowerNotation = Mod::get()->getSettingValue<bool>("use-power-notation");
 	bool usingXXLplus = Mod::get()->getSettingValue<bool>("xxl-plus");
 	int lengthExponent = log2(levelLengthMinutes);
 
 	if (usingPowerNotation && lengthExponent > maximumXs) {
-		XLstring.append("X^");
-		XLstring.append(std::to_string(lengthExponent));
+		XLstring << "X^" << std::to_string(lengthExponent);
 	}
 
 	else {
@@ -22,21 +21,21 @@ std::string createXLstring(int levelLengthMinutes) {
 			lengthExponent = maximumXs;
 		}
 		for (int i = 0; i < lengthExponent; i++) {
-			XLstring.append("X");
+			XLstring << "X";
 		}
 	}
-	XLstring.append("L");
+	XLstring << "L";
 
 	if (!usingXXLplus) {
-		return XLstring;
+		return XLstring.str();
 	}
 
     int XXLPlusLength = pow(2, lengthExponent) + pow(2, lengthExponent - 1);
     if (levelLengthMinutes >= XXLPlusLength) {
-		XLstring.append("+");
+		XLstring << "+";
     }
 
-    return XLstring;
+    return XLstring.str();
 };
 
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
