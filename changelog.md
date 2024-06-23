@@ -1,6 +1,7 @@
 # v1.2.2
 * Added Red
-* Update mod description
+* Updated mod description
+* Changed max Xs setting controls
 
 # v1.2.1
 * Update to geode 3.0.0
