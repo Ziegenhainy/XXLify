@@ -17,7 +17,10 @@
             "type": "int",
             "default": 10,
 			"max": 10,
-			"min": 1
+			"min": 1,
+			"control": {
+				"slider": false
+			}
         },
 		"use-power-notation": {
 			"name": "Use power notation",
