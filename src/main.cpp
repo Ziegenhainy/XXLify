@@ -1,4 +1,5 @@
 #include <Geode/modify/LevelInfoLayer.hpp>
+#include "ccTypes.h"
 #include "cvoltonLevelTime.cpp"
 #include <cmath>
 #include <thread>
@@ -39,6 +40,16 @@ std::string createXLstring(int levelLengthMinutes) {
 };
 
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
+	void modifyXLlabel(int levelLengthMinutes) {
+		bool usingRed = Mod::get()->getSettingValue<bool>("use-red");
+		m_lengthLabel->setString(createXLstring(levelLengthMinutes).c_str());
+		int maximumRed = Mod::get()->getSettingValue<int64_t>("maximum-red");
+		if (usingRed) {
+			GLubyte redGradient=levelLengthMinutes<maximumRed ? 255-levelLengthMinutes*255/maximumRed : 0; 
+			m_lengthLabel->setColor({255,redGradient,redGradient});
+		}
+	}
+
 	// Using CVolton's time calculator for levels before 2.2
 	void createXLlabelCvolton() {
 		this->retain();
@@ -49,7 +60,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 
 			Loader::get()->queueInMainThread([this,cvoltonLengthMinutes]() {
 				if (cvoltonLengthMinutes >= 3) {
-					m_lengthLabel->setString(createXLstring(cvoltonLengthMinutes).c_str());
+					modifyXLlabel(cvoltonLengthMinutes);
 				}
 				this->release();
 			});
@@ -73,7 +84,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 			return;
 		}
 
-		m_lengthLabel->setString(createXLstring(levelLengthMinutes).c_str());
+		modifyXLlabel(levelLengthMinutes);
 	}
 
 	void setupLevelInfo() {

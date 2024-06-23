@@ -30,6 +30,19 @@
 			"description": "If enabled, levels that are beyond halfway to the next XXL label get a + added to the length",
 			"type": "bool",
 			"default": false
+		},
+		"use-red": {
+			"name": "Red",
+			"description": "Enable Red",
+			"type": "bool",
+			"default": false
+		},
+		"maximum-red": {
+			"name": "Maximum Red length",
+			"description": "Length in minutes at which red will be at a maximum",
+			"type": "int",
+			"default": 60,
+			"min": 0
 		}
     }
 }
