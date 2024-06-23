@@ -5,11 +5,11 @@
 		"mac": "2.206",
 		"android": "2.206"
 	},
-	"version": "v1.2.1",
+	"version": "v1.2.2",
 	"id": "ziegenhainy.xxlify",
 	"name": "XXLify",
 	"developer": "Ziegenhainy",
-	"description": "Levels longer than 4 minutes get more Xs in the length",
+	"description": "Levels longer than XL get more Xs in the length",
 	"settings": {
         "maximum-xs": {
             "name": "Maximum Xs",
@@ -17,7 +17,10 @@
             "type": "int",
             "default": 10,
 			"max": 10,
-			"min": 1
+			"min": 1,
+			"control": {
+				"slider": false
+			}
         },
 		"use-power-notation": {
 			"name": "Use power notation",
@@ -30,6 +33,19 @@
 			"description": "If enabled, levels that are beyond halfway to the next XXL label get a + added to the length",
 			"type": "bool",
 			"default": false
+		},
+		"use-red": {
+			"name": "Red",
+			"description": "Enable Red",
+			"type": "bool",
+			"default": false
+		},
+		"maximum-red": {
+			"name": "Maximum Red length",
+			"description": "Length in minutes at which red will be at a maximum",
+			"type": "int",
+			"default": 60,
+			"min": 0
 		}
     }
 }

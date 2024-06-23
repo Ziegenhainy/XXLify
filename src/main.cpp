@@ -6,15 +6,14 @@
 using namespace geode::prelude;
 
 std::string createXLstring(int levelLengthMinutes) {
-	std::string XLstring;
+	std::stringstream XLstring;
 	int maximumXs = Mod::get()->getSettingValue<int64_t>("maximum-xs");
 	bool usingPowerNotation = Mod::get()->getSettingValue<bool>("use-power-notation");
 	bool usingXXLplus = Mod::get()->getSettingValue<bool>("xxl-plus");
 	int lengthExponent = log2(levelLengthMinutes);
 
 	if (usingPowerNotation && lengthExponent > maximumXs) {
-		XLstring.append("X^");
-		XLstring.append(std::to_string(lengthExponent));
+		XLstring << "X^" << std::to_string(lengthExponent);
 	}
 
 	else {
@@ -22,24 +21,34 @@ std::string createXLstring(int levelLengthMinutes) {
 			lengthExponent = maximumXs;
 		}
 		for (int i = 0; i < lengthExponent; i++) {
-			XLstring.append("X");
+			XLstring << "X";
 		}
 	}
-	XLstring.append("L");
+	XLstring << "L";
 
 	if (!usingXXLplus) {
-		return XLstring;
+		return XLstring.str();
 	}
 
     int XXLPlusLength = pow(2, lengthExponent) + pow(2, lengthExponent - 1);
     if (levelLengthMinutes >= XXLPlusLength) {
-		XLstring.append("+");
+		XLstring << "+";
     }
 
-    return XLstring;
+    return XLstring.str();
 };
 
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
+	void modifyXLlabel(int levelLengthMinutes) {
+		bool usingRed = Mod::get()->getSettingValue<bool>("use-red");
+		m_lengthLabel->setString(createXLstring(levelLengthMinutes).c_str());
+		int maximumRed = Mod::get()->getSettingValue<int64_t>("maximum-red");
+		if (usingRed) {
+			GLubyte redGradient=levelLengthMinutes<maximumRed ? 255-levelLengthMinutes*255/maximumRed : 0; 
+			m_lengthLabel->setColor({255,redGradient,redGradient});
+		}
+	}
+
 	// Using CVolton's time calculator for levels before 2.2
 	void createXLlabelCvolton() {
 		this->retain();
@@ -50,7 +59,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 
 			Loader::get()->queueInMainThread([this,cvoltonLengthMinutes]() {
 				if (cvoltonLengthMinutes >= 3) {
-					m_lengthLabel->setString(createXLstring(cvoltonLengthMinutes).c_str());
+					modifyXLlabel(cvoltonLengthMinutes);
 				}
 				this->release();
 			});
@@ -74,7 +83,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 			return;
 		}
 
-		m_lengthLabel->setString(createXLstring(levelLengthMinutes).c_str());
+		modifyXLlabel(levelLengthMinutes);
 	}
 
 	void setupLevelInfo() {
