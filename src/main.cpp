@@ -1,5 +1,4 @@
 #include <Geode/modify/LevelInfoLayer.hpp>
-#include "ccTypes.h"
 #include "cvoltonLevelTime.cpp"
 #include <cmath>
 #include <thread>
