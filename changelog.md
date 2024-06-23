@@ -1,3 +1,7 @@
+# v1.2.2
+* Added Red
+* Update mod description
+
 # v1.2.1
 * Update to geode 3.0.0
 * Changed power notation setting to above maximum Xs
