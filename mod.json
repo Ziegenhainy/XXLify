@@ -11,6 +11,10 @@
 	"developer": "Ziegenhainy",
 	"description": "Levels longer than XL get more Xs in the length",
 	"repository": "https://github.com/Ziegenhainy/XXLify",
+	"issues": {
+		"info": "Report issues to the Github Repo!",
+		"url": "https://github.com/Ziegenhainy/XXLify/issues"
+	},
 	"resources": {
 		"sprites": [
 			"resources/*.png"
