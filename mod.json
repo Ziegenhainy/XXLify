@@ -10,6 +10,7 @@
 	"name": "XXLify",
 	"developer": "Ziegenhainy",
 	"description": "Levels longer than XL get more Xs in the length",
+	"repository": "https://github.com/Ziegenhainy/XXLify",
 	"settings": {
         "maximum-xs": {
             "name": "Maximum Xs",
