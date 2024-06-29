@@ -1,3 +1,10 @@
+# v1.2.3
+* Update to geode 3.1.1
+* Added Color!
+* Added Cat
+* Updated About Section
+* Added some links
+
 # v1.2.2
 * Added Red
 * Updated mod description
