@@ -40,12 +40,18 @@ std::string createXLstring(int levelLengthMinutes) {
 
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 	void modifyXLlabel(int levelLengthMinutes) {
-		bool usingRed = Mod::get()->getSettingValue<bool>("use-red");
+		bool usingCol = Mod::get()->getSettingValue<bool>("use-color");
 		m_lengthLabel->setString(createXLstring(levelLengthMinutes).c_str());
-		int maximumRed = Mod::get()->getSettingValue<int64_t>("maximum-red");
-		if (usingRed) {
-			GLubyte redGradient=levelLengthMinutes<maximumRed ? 255-levelLengthMinutes*255/maximumRed : 0; 
-			m_lengthLabel->setColor({255,redGradient,redGradient});
+		if (usingCol) {			
+			int maxCol = Mod::get()->getSettingValue<int64_t>("maximum-color");
+			ccColor3B labelCol = Mod::get()->getSettingValue<ccColor3B>("label-color");
+			float colT=levelLengthMinutes<maxCol ? (float) levelLengthMinutes/maxCol : 1;
+
+			labelCol.r = std::lerp(255, labelCol.r, colT);
+			labelCol.g = std::lerp(255, labelCol.g, colT);
+			labelCol.b = std::lerp(255, labelCol.b, colT);
+
+			m_lengthLabel->setColor({labelCol.r, labelCol.g, labelCol.b});
 		}
 	}
 
