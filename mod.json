@@ -34,15 +34,21 @@
 			"type": "bool",
 			"default": false
 		},
-		"use-red": {
-			"name": "Red",
-			"description": "Enable Red",
+		"use-color": {
+			"name": "Use colored label",
+			"description": "Enables a colored label",
 			"type": "bool",
 			"default": false
 		},
-		"maximum-red": {
-			"name": "Maximum Red length",
-			"description": "Length in minutes at which red will be at a maximum",
+		"label-color":{
+			"name": "Label Color",
+			"description": "Color that the XXL label will have",
+			"type": "color",
+			"default": "#FF0000"
+		},
+		"maximum-color": {
+			"name": "Maximum color length",
+			"description": "Length in minutes at which the color has been reached",
 			"type": "int",
 			"default": 60,
 			"min": 0
