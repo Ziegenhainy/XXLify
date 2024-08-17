@@ -22,12 +22,6 @@
 * Update to geode 3.0.0
 * Changed power notation setting to above maximum Xs
 
-# v1.2.1-beta.2
-* Update to geode 3.0.0-beta.1
-
-# v1.2.1-beta.1
-* Update to geode 3.0.0-alpha.2
-
 # v1.2.0
 * Added setting for maximum Xs
 * Added power notation (disabled by default)
