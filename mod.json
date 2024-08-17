@@ -44,25 +44,25 @@
 			"name": "Use power notation",
 			"description": "If enabled, levels above the maximum X limit will be displayed using power notation, i.e. \"XXXL\" becomes \"X^3L\"",
 			"type": "bool",
-			"default": false
+			"default": true
 		},
 		"xxl-plus": {
 			"name": "Enable XXL+",
 			"description": "If enabled, levels that are beyond halfway to the next XXL label get a + added to the length",
 			"type": "bool",
-			"default": false
+			"default": true
 		},
 		"use-color": {
 			"name": "Use colored label",
 			"description": "Enables a colored label",
 			"type": "bool",
-			"default": false
+			"default": true
 		},
 		"label-color":{
 			"name": "Label Color",
 			"description": "Color that the XXL label will have",
 			"type": "color",
-			"default": "#FF0000"
+			"default": "#880000"
 		},
 		"maximum-color": {
 			"name": "Maximum color length",
