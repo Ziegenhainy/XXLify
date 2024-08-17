@@ -26,6 +26,7 @@ std::string createXLstring(float levelLengthMinutes) {
 			lengthExponent = maximumXs;
 		}
 		for (int i = 0; i < lengthExponent; i++) {
+			if (i%10==0 && i!=0) XLstring << "\n";
 			XLstring << "X";
 		}
 	}
@@ -46,7 +47,17 @@ std::string createXLstring(float levelLengthMinutes) {
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 	void modifyXLlabel(int levelLengthMinutes) {
 		bool usingCol = Mod::get()->getSettingValue<bool>("use-color");
-		m_lengthLabel->setString(createXLstring(levelLengthMinutes).c_str());
+		std::string XLstring = createXLstring(levelLengthMinutes);
+		int XLstringLines = std::count(XLstring.begin(), XLstring.end(), '\n')+1;
+		
+		m_lengthLabel->setString(XLstring.c_str());
+
+		// linewrapping needs to reset anchor point
+		if (XLstringLines>1) {
+			m_lengthLabel->setAnchorPoint({0,1});
+			m_lengthLabel->setPositionY(m_lengthLabel->getPositionY()+8.125f);
+		}
+
 		if (usingCol) {			
 			int maxCol = Mod::get()->getSettingValue<int64_t>("maximum-color");
 			ccColor3B labelCol = Mod::get()->getSettingValue<ccColor3B>("label-color");
