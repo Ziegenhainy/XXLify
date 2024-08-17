@@ -5,12 +5,17 @@
 
 using namespace geode::prelude;
 
-std::string createXLstring(int levelLengthMinutes) {
+int logBaseN(float x, float n) {
+	return std::log(x)/std::log(n);
+}
+
+std::string createXLstring(float levelLengthMinutes) {
 	std::stringstream XLstring;
-	int maximumXs = Mod::get()->getSettingValue<int64_t>("maximum-xs");
+	int maximumXs           = Mod::get()->getSettingValue<int64_t>("maximum-xs");
 	bool usingPowerNotation = Mod::get()->getSettingValue<bool>("use-power-notation");
-	bool usingXXLplus = Mod::get()->getSettingValue<bool>("xxl-plus");
-	int lengthExponent = log2(levelLengthMinutes);
+	bool usingXXLplus       = Mod::get()->getSettingValue<bool>("xxl-plus");
+	float xxlScaling        = Mod::get()->getSettingValue<double>("xxl-scaling");
+	int lengthExponent      = logBaseN(levelLengthMinutes/2, xxlScaling)+1;
 
 	if (usingPowerNotation && lengthExponent > maximumXs) {
 		XLstring << "X^" << std::to_string(lengthExponent);
@@ -30,7 +35,7 @@ std::string createXLstring(int levelLengthMinutes) {
 		return XLstring.str();
 	}
 
-    int XXLPlusLength = pow(2, lengthExponent) + pow(2, lengthExponent - 1);
+    float XXLPlusLength = pow(xxlScaling, lengthExponent) + pow(xxlScaling, lengthExponent - 1);
     if (levelLengthMinutes >= XXLPlusLength) {
 		XLstring << "+";
     }
@@ -61,10 +66,10 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 		
 		std::thread([this](){
 			thread::setName("CVoltonTime");
-			int cvoltonLengthMinutes = timeForLevelString(m_level->m_levelString);
+			float cvoltonLengthMinutes = timeForLevelString(m_level->m_levelString);
 
 			Loader::get()->queueInMainThread([this,cvoltonLengthMinutes]() {
-				if (cvoltonLengthMinutes >= 3) {
+				if (cvoltonLengthMinutes >= 2.0f) {
 					modifyXLlabel(cvoltonLengthMinutes);
 				}
 				this->release();
@@ -77,15 +82,15 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 			return;
 		}
 		
-		int levelLengthMinutes = m_level->m_timestamp / 14400;
+		float levelLengthMinutes = (float) m_level->m_timestamp / 14400.0f;
 		
 		
-		if (levelLengthMinutes<=0) {
+		if (levelLengthMinutes<=0.0f) {
 			createXLlabelCvolton();
 			return;
 		}
 
-		if (levelLengthMinutes < 3) {
+		if (levelLengthMinutes < 2.0f) {
 			return;
 		}
 

@@ -32,6 +32,14 @@
 				"slider": false
 			}
         },
+		"xxl-scaling": {
+			"name": "XXL Scaling",
+			"description": "How long levels need to be to get a longer label. The length of the level needs to be multiplied by this number to get a longer Label. (e.g. at 1.5, XL is 2 minutes, XXl is 3 minutes, XXXL is 4,5 minutes etc.)",
+			"type": "float",
+			"default": 2,
+			"max": 10,
+			"min": 1.1
+        },
 		"use-power-notation": {
 			"name": "Use power notation",
 			"description": "If enabled, levels above the maximum X limit will be displayed using power notation, i.e. \"XXXL\" becomes \"X^3L\"",

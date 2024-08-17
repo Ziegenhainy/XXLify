@@ -60,7 +60,7 @@ std::string decodeBase64Gzip(const std::string& input) {
 }
 
 
-int timeForLevelString(const std::string& levelString) {
+float timeForLevelString(const std::string& levelString) {
         std::string epicString;
     try {
         auto decompressString = decodeBase64Gzip(levelString);
@@ -105,7 +105,7 @@ int timeForLevelString(const std::string& levelString) {
             prevPortalX = xPos;
         }
         timeFull += (maxPos - prevPortalX) / travelForPortalId(prevPortalId);
-        timeFull /= 60;
+        timeFull /= 60.0f;
         return timeFull;
     } catch(std::exception e) {
         return 0;
