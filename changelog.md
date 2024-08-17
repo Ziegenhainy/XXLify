@@ -4,6 +4,7 @@
 * Added custom XXL scaling
 * Added linewrapping
 * Updated maximum Xs to 100
+* Macos Support
 
 # v1.2.3
 * Update to geode 3.1.1
