@@ -1,3 +1,10 @@
+# v1.3.0
+* Update to geode 3.4.0
+* Updated setting defaults
+* Added custom XXL scaling
+* Added linewrapping
+* Updated maximum Xs to 100
+
 # v1.2.3
 * Update to geode 3.1.1
 * Added Color!

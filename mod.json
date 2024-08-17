@@ -5,7 +5,7 @@
 		"mac": "2.206",
 		"android": "2.206"
 	},
-	"version": "v1.2.3",
+	"version": "v1.3.0",
 	"id": "ziegenhainy.xxlify",
 	"name": "XXLify",
 	"developer": "Ziegenhainy",
@@ -39,7 +39,7 @@
 			"default": 2,
 			"max": 10,
 			"min": 1.1
-        },
+		},
 		"use-power-notation": {
 			"name": "Use power notation",
 			"description": "If enabled, levels above the maximum X limit will be displayed using power notation, i.e. \"XXXL\" becomes \"X^3L\"",
