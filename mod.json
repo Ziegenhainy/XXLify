@@ -1,5 +1,5 @@
 {
-	"geode": "3.4.0",
+	"geode": "4.0.0-beta.1",
 	"gd": {
 		"win": "2.206",
 		"mac": "2.206",
@@ -9,8 +9,7 @@
 	"id": "ziegenhainy.xxlify",
 	"name": "XXLify",
 	"developer": "Ziegenhainy",
-	"description": "Levels longer than XL get more Xs in the length",
-	"repository": "https://github.com/Ziegenhainy/XXLify",
+	"description": "Long levels get more Xs in length",
 	"issues": {
 		"info": "Report issues to the Github Repo!",
 		"url": "https://github.com/Ziegenhainy/XXLify/issues"

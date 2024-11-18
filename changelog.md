@@ -1,3 +1,8 @@
+# v1.3.1
+* Update to geode 4.0.0-beta.1
+* Shortened Description
+* Removed Repository
+
 # v1.3.0
 * Update to geode 3.4.0
 * Updated setting defaults
