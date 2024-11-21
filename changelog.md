@@ -1,3 +1,6 @@
+# v1.3.2
+* Update to geode 4.0.1
+
 # v1.3.1
 * Update to geode 4.0.0-beta.1
 * Shortened Description
