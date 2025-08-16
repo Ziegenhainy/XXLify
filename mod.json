@@ -1,11 +1,11 @@
 {
-	"geode": "4.0.1",
+	"geode": "4.7.0",
 	"gd": {
 		"win": "2.2074",
 		"mac": "2.2074",
 		"android": "2.2074"
 	},
-	"version": "v1.3.2",
+	"version": "v1.3.3",
 	"id": "ziegenhainy.xxlify",
 	"name": "XXLify",
 	"developer": "Ziegenhainy",
@@ -19,6 +19,11 @@
 			"resources/*.png"
 		]
 	},
+	"tags": [
+		"customization",
+		"enhancement",
+		"offline"
+	],
 	"settings": {
         "maximum-xs": {
             "name": "Maximum Xs",
@@ -48,6 +53,12 @@
 		"xxl-plus": {
 			"name": "Enable XXL+",
 			"description": "If enabled, levels that are beyond halfway to the next XXL label get a + added to the length",
+			"type": "bool",
+			"default": true
+		},
+		"long-plus": {
+			"name": "Enable Long+",
+			"description": "If enabled, levels that are longer than 1m30s will be Long+",
 			"type": "bool",
 			"default": true
 		},
