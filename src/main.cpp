@@ -78,10 +78,18 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 		std::thread([this](){
 			thread::setName("CVoltonTime");
 			float cvoltonLengthMinutes = timeForLevelString(m_level->m_levelString);
-
-			Loader::get()->queueInMainThread([this,cvoltonLengthMinutes]() {
-				if (cvoltonLengthMinutes >= 2.0f) {
-					modifyXLlabel(cvoltonLengthMinutes);
+			bool longPlus = Mod::get()->getSettingValue<bool>("long-plus");
+			
+			Loader::get()->queueInMainThread([this,cvoltonLengthMinutes, longPlus]() {
+				if (cvoltonLengthMinutes >= 1.5f) {
+					if (cvoltonLengthMinutes < 2.0f) {
+						if (longPlus) {
+							m_lengthLabel->setString("Long+");
+						}
+					}
+					else {
+						modifyXLlabel(cvoltonLengthMinutes);
+					}
 				}
 				this->release();
 			});
@@ -95,13 +103,19 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 		
 		float levelLengthMinutes = (float) m_level->m_timestamp / 14400.0f;
 		
-		
 		if (levelLengthMinutes<=0.0f) {
 			createXLlabelCvolton();
 			return;
 		}
+		
+		if (levelLengthMinutes < 1.5f) {
+			return;
+		}
 
 		if (levelLengthMinutes < 2.0f) {
+			if (Mod::get()->getSettingValue<bool>("long-plus")) {
+				m_lengthLabel->setString("Long+");
+			}
 			return;
 		}
 
