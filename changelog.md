@@ -1,3 +1,6 @@
+# v1.3.4
+* Fixed XXL Label sometimes being wrong
+
 # v1.3.3  
 * Long+  
 

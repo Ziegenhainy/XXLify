@@ -37,6 +37,8 @@ std::string createXLstring(float levelLengthMinutes) {
 	}
 
     float XXLPlusLength = pow(xxlScaling, lengthExponent) + pow(xxlScaling, lengthExponent - 1);
+	// log::info("{}", XXLPlusLength);
+	// log::info("{}", levelLengthMinutes);
     if (levelLengthMinutes >= XXLPlusLength) {
 		XLstring << "+";
     }
@@ -45,7 +47,7 @@ std::string createXLstring(float levelLengthMinutes) {
 };
 
 class $modify(MyLevelInfoLayer, LevelInfoLayer) {
-	void modifyXLlabel(int levelLengthMinutes) {
+	void modifyXLlabel(float levelLengthMinutes) {
 		bool usingCol = Mod::get()->getSettingValue<bool>("use-color");
 		std::string XLstring = createXLstring(levelLengthMinutes);
 		int XLstringLines = std::count(XLstring.begin(), XLstring.end(), '\n')+1;
