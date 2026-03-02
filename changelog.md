@@ -1,3 +1,6 @@
+# v1.3.5
+* Updated for Geode 5.3.0
+
 # v1.3.4
 * Fixed XXL Label sometimes being wrong
 
