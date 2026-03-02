@@ -16,7 +16,6 @@ std::string createXLstring(float levelLengthMinutes) {
 	bool usingXXLplus       = Mod::get()->getSettingValue<bool>("xxl-plus");
 	float xxlScaling        = Mod::get()->getSettingValue<double>("xxl-scaling");
 	int lengthExponent      = logBaseN(levelLengthMinutes/2, xxlScaling)+1;
-
 	if (usingPowerNotation && lengthExponent > maximumXs) {
 		XLstring << "X^" << std::to_string(lengthExponent);
 	}
