@@ -79,6 +79,8 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 		std::thread([this](){
 			thread::setName("CVoltonTime");
 			float cvoltonLengthMinutes = timeForLevelString(m_level->m_levelString);
+			log::info("Timestamp not found, estimated {}m long", cvoltonLengthMinutes);
+
 			bool longPlus = Mod::get()->getSettingValue<bool>("long-plus");
 			
 			Loader::get()->queueInMainThread([this,cvoltonLengthMinutes, longPlus]() {
@@ -109,6 +111,8 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 			return;
 		}
 		
+		log::info("Timestamp found, level is {}m long", levelLengthMinutes);
+
 		if (levelLengthMinutes < 1.5f) {
 			return;
 		}
