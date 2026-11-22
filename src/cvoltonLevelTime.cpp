@@ -1,6 +1,7 @@
 #include <Geode/Geode.hpp>
 #include <Geode/cocos/support/base64.h>
 #include <Geode/cocos/support/zip_support/ZipUtils.h>
+#include <asp/iter.hpp>
 
 using namespace geode::prelude;
 
