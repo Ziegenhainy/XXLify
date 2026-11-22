@@ -1,3 +1,6 @@
+# v1.3.7
+* Updated for Geode 6.0.0-beta.1
+
 # v1.3.6  
 * Fixed levels having incorrect length label by stealing more code from CVolton. 
   
